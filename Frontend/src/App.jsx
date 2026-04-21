@@ -16,9 +16,12 @@ import SettingsPage from './pages/SettingsPage';
 function App() {
   const { fetchMe, isAuthenticated } = useAuthStore();
 
-  useEffect(() => {
-    if (isAuthenticated()) fetchMe();
-  }, []);
+useEffect(() => {
+    if (token) {
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      fetchMe(); 
+    }
+  }, [token]);
 
   return (
     <BrowserRouter>
