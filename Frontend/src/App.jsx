@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 import useAuthStore from './context/authStore';
+import api from './utils/api'; 
 import { ProtectedRoute, SubscribedRoute } from './components/auth/ProtectedRoute';
 import DashboardLayout from './components/layout/DashboardLayout';
 import PricingPage from './pages/PricingPage';
@@ -14,7 +15,7 @@ import CharitiesPage from './pages/CharitiesPage';
 import SettingsPage from './pages/SettingsPage';
 
 function App() {
-  const { fetchMe, isAuthenticated } = useAuthStore();
+  const { fetchMe, token } = useAuthStore();
 
 useEffect(() => {
     if (token) {

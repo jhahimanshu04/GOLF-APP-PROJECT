@@ -43,7 +43,7 @@ const useAuthStore = create(
       // --- Logout ---
       logout: () => {
         set({ user: null, token: null });
-        delete api.defaults.headers.common['Authorization'];
+        localStorage.removeItem('golf-auth');
       },
 
       // --- Fetch current user ---
@@ -55,7 +55,7 @@ const useAuthStore = create(
           const { data } = await api.get('/auth/me');
           set({ user: data.user });
         } catch {
-          set({ user: null, token: null });
+          set({  token: null });
         }
       },
 
@@ -72,7 +72,7 @@ const useAuthStore = create(
 
       clearError: () => set({ error: null }),
 
-      isAuthenticated: () => !!get().token && !!get().user,
+      isAuthenticated: () => !!get().token ,
       isAdmin: () => get().user?.role === 'admin',
       isSubscribed: () => {
         const user = get().user;
