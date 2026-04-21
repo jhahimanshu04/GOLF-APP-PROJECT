@@ -27,8 +27,8 @@ const app = express();
 // --- Middleware ---
 app.use(cors({
   origin: [
-    process.env.CLIENT_URL || 'http://localhost:5002',  // ✅ Frontend
-    process.env.ADMIN_URL  || 'http://localhost:5001',  // ✅ Admin Panel
+    process.env.CLIENT_URL || 'http://localhost:5002', 
+    process.env.ADMIN_URL  || 'http://localhost:5001',
   ],
   credentials: true,
 }));
