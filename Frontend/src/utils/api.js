@@ -7,7 +7,7 @@ const api = axios.create({
 
 api.interceptors.request.use((config) => {
   const stored = JSON.parse(localStorage.getItem('golf-auth') || '{}');
-  const token = stored?.state?.token;
+  const token = stored?.state?.token|| null;
   if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
