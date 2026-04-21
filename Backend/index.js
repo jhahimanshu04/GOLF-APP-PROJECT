@@ -43,7 +43,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // --- Routes ---
-aapp.use('/api/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/stripe', stripeRoutes);
 app.use('/api/scores', scoreRoutes);
 app.use('/api/draws', drawRoutes);
