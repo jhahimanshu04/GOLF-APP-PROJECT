@@ -26,10 +26,9 @@ const app = express();
 
 // --- Middleware ---
 app.use(cors({
-  origin: [
-    process.env.CLIENT_URL || 'http://localhost:5002', 
-    process.env.ADMIN_URL  || 'http://localhost:5001',
-  ],
+  
+   origin: [process.env.CLIENT_URL, process.env.ADMIN_URL],
+
   credentials: true,
 }));
 
@@ -44,28 +43,12 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // --- Routes ---
-app.use('/api/auth', authRoutes);
+aapp.use('/api/auth', authRoutes);
 app.use('/api/stripe', stripeRoutes);
 app.use('/api/scores', scoreRoutes);
 app.use('/api/draws', drawRoutes);
 app.use('/api/charities', charityRoutes);
 app.use('/api/admin', adminRoutes);
-// Phase 2 will add:
-// app.use('/api/stripe', stripeRoutes);
-app.use('/api/scores', scoreRoutes);
-app.use('/api/draws', drawRoutes);
-app.use('/api/charities', charityRoutes);
-app.use('/api/admin', adminRoutes);
-// app.use('/api/scores', scoreRoutes);
-app.use('/api/draws', drawRoutes);
-app.use('/api/charities', charityRoutes);
-app.use('/api/admin', adminRoutes);
-// app.use('/api/draws', drawRoutes);
-app.use('/api/charities', charityRoutes);
-app.use('/api/admin', adminRoutes);
-// app.use('/api/charities', charityRoutes);
-app.use('/api/admin', adminRoutes);
-// app.use('/api/admin', adminRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
