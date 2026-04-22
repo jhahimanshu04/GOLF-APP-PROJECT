@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../context/authStore';
 import useSubscriptionStore from '../context/subscriptionStore';
 
+// ✅ ICONS
+import { FaCheck, FaStar } from "react-icons/fa";
+
 const features = [
   'Enter monthly draws',
   'Up to 5 rolling golf scores',
@@ -29,6 +32,7 @@ const PricingPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 py-20 px-4">
+
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -38,9 +42,11 @@ const PricingPage = () => {
         <span className="inline-block bg-gold-500 text-primary-900 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-widest">
           Simple Pricing
         </span>
+
         <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
           Play. Win. Give Back.
         </h1>
+
         <p className="text-primary-200 text-lg max-w-xl mx-auto">
           One subscription enters you into monthly prize draws while supporting the charity of your choice.
         </p>
@@ -51,6 +57,7 @@ const PricingPage = () => {
         <span className={`text-sm font-medium ${!isYearly ? 'text-white' : 'text-primary-400'}`}>
           Monthly
         </span>
+
         <button
           onClick={() => setIsYearly(!isYearly)}
           className={`relative w-14 h-7 rounded-full transition-colors duration-300 ${
@@ -63,6 +70,7 @@ const PricingPage = () => {
             }`}
           />
         </button>
+
         <span className={`text-sm font-medium ${isYearly ? 'text-white' : 'text-primary-400'}`}>
           Yearly
           <span className="ml-2 bg-green-500 text-white text-xs px-2 py-0.5 rounded-full">
@@ -90,23 +98,29 @@ const PricingPage = () => {
               MOST POPULAR
             </span>
           )}
+
           <h3 className={`text-xl font-bold mb-1 ${!isYearly ? 'text-primary-900' : 'text-white'}`}>
             Monthly
           </h3>
+
           <div className="flex items-end gap-1 mb-6">
             <span className={`text-5xl font-display font-bold ${!isYearly ? 'text-primary-900' : 'text-white'}`}>
               £9.99
             </span>
             <span className={`mb-2 ${!isYearly ? 'text-primary-500' : 'text-primary-300'}`}>/mo</span>
           </div>
+
           <ul className="space-y-3 mb-8">
             {features.map((f) => (
               <li key={f} className="flex items-center gap-2">
-                <span className="text-green-500 font-bold">✓</span>
-                <span className={`text-sm ${!isYearly ? 'text-primary-700' : 'text-primary-300'}`}>{f}</span>
+                <FaCheck className="text-green-500 text-xs" />
+                <span className={`text-sm ${!isYearly ? 'text-primary-700' : 'text-primary-300'}`}>
+                  {f}
+                </span>
               </li>
             ))}
           </ul>
+
           <button
             onClick={() => handleSubscribe('monthly')}
             disabled={isLoading}
@@ -136,32 +150,40 @@ const PricingPage = () => {
               BEST VALUE
             </span>
           )}
+
           <h3 className={`text-xl font-bold mb-1 ${isYearly ? 'text-primary-900' : 'text-white'}`}>
             Yearly
           </h3>
+
           <div className="flex items-end gap-1 mb-1">
             <span className={`text-5xl font-display font-bold ${isYearly ? 'text-primary-900' : 'text-white'}`}>
               £99.99
             </span>
             <span className={`mb-2 ${isYearly ? 'text-primary-500' : 'text-primary-300'}`}>/yr</span>
           </div>
+
           <p className={`text-sm mb-6 ${isYearly ? 'text-green-600' : 'text-green-400'} font-medium`}>
             £8.33/month — save £19.89 vs monthly
           </p>
+
           <ul className="space-y-3 mb-8">
             {features.map((f) => (
               <li key={f} className="flex items-center gap-2">
-                <span className="text-green-500 font-bold">✓</span>
-                <span className={`text-sm ${isYearly ? 'text-primary-700' : 'text-primary-300'}`}>{f}</span>
+                <FaCheck className="text-green-500 text-xs" />
+                <span className={`text-sm ${isYearly ? 'text-primary-700' : 'text-primary-300'}`}>
+                  {f}
+                </span>
               </li>
             ))}
+
             <li className="flex items-center gap-2">
-              <span className="text-gold-500 font-bold">★</span>
+              <FaStar className="text-gold-500 text-xs" />
               <span className={`text-sm font-medium ${isYearly ? 'text-primary-700' : 'text-primary-300'}`}>
                 Priority draw entry
               </span>
             </li>
           </ul>
+
           <button
             onClick={() => handleSubscribe('yearly')}
             disabled={isLoading}
@@ -174,9 +196,10 @@ const PricingPage = () => {
             {isLoading ? 'Loading...' : 'Get Started'}
           </button>
         </motion.div>
+
       </div>
 
-      {/* Footer note */}
+      {/* Footer */}
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

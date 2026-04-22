@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { GiGolfFlag, GiSlotMachine } from "react-icons/gi";
+import { FaTrophy, FaHeart } from "react-icons/fa";
+import { FiSettings } from "react-icons/fi";
 import useAuthStore from '../context/authStore';
 import useScoreStore from '../context/scoreStore';
 import useDrawStore from '../context/drawStore';
@@ -113,21 +116,21 @@ const Dashboard = () => {
       {/* Stats grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
         <StatCard
-          icon="⛳"
+          icon={<GiGolfFlag />}
           label="Scores Entered"
           value={`${scores.length}/5`}
           sub={stats?.average ? `Avg: ${stats.average} pts` : 'No scores yet'}
           delay={0.05}
         />
         <StatCard
-          icon="🎰"
+          icon={<GiSlotMachine />}
           label="Draws Entered"
           value={myHistory.length || 0}
           sub="all time"
           delay={0.1}
         />
         <StatCard
-          icon="🏆"
+         icon={<FaTrophy />}
           label="Total Won"
           value={`£${totalWon.toFixed(2)}`}
           color="text-gold-400"
@@ -135,7 +138,7 @@ const Dashboard = () => {
           delay={0.15}
         />
         <StatCard
-          icon="💛"
+         icon={<FaHeart />}
           label="Supporting"
           value={myCharity ? '1 charity' : 'None yet'}
           sub={myCharity ? `${myContributionPercent}% contribution` : 'Choose a charity'}
@@ -152,7 +155,7 @@ const Dashboard = () => {
 
           <QuickLinkCard
             to="/dashboard/scores"
-            icon="⛳"
+             icon={<GiGolfFlag />}
             label="My Scores"
             description={scores.length > 0 ? `${scores.length} scores entered — latest: ${scores[0]?.value} pts` : 'No scores yet — add your first score'}
             badge={scores.length === 0 ? 'Action needed' : null}
@@ -160,7 +163,7 @@ const Dashboard = () => {
           />
           <QuickLinkCard
             to="/dashboard/draws"
-            icon="🎰"
+            icon={<GiSlotMachine />}
             label="Draws & Winnings"
             description={upcomingDraw ? `Next draw: ${upcomingDraw.title}` : 'View draw results and history'}
             badge={pendingWinnings.length > 0 ? `${pendingWinnings.length} to claim` : null}
@@ -168,7 +171,7 @@ const Dashboard = () => {
           />
           <QuickLinkCard
             to="/dashboard/charities"
-            icon="💛"
+           icon={<FaHeart />}
             label="Charities"
             description={myCharity ? `Supporting: ${myCharity.name}` : 'Choose a charity to support'}
             badge={!myCharity ? 'Choose one' : null}
@@ -176,7 +179,7 @@ const Dashboard = () => {
           />
           <QuickLinkCard
             to="/dashboard/settings"
-            icon="⚙️"
+            icon={<FiSettings/>}
             label="Account & Billing"
             description="Manage your subscription, password, and profile"
             delay={0.25}
